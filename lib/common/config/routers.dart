@@ -1,8 +1,9 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fq_mall/config/navigator_util.dart';
 import 'package:flutter_fq_mall/ui/not_found_view.dart';
-import 'package:flutter_fq_mall/ui/splash_view.dart';
+import 'package:flutter_fq_mall/ui/main_view.dart';
+
+import 'navigator_util.dart';
 
 class Routers {
   static String root = "/";
@@ -24,5 +25,5 @@ class Routers {
 
 var splashHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> parameters) {
-  return SplashView();
+  return MainView();
 });

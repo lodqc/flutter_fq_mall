@@ -1,10 +1,8 @@
-import 'dart:io';
-
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_fq_mall/config/navigator_util.dart';
-import 'package:flutter_fq_mall/config/routers.dart';
+
+import 'common/config/navigator_util.dart';
+import 'common/config/routers.dart';
 
 void main() {
   runApp(MallApp());

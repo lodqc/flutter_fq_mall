@@ -20,7 +20,7 @@
             android:value="true"/>
         <!--适配小米（xiaomi）刘海屏-->
         <meta-data
-            android:name="notch.config"
+            android:name="notch.common.config"
             android:value="portrait|landscape" />
 
         <activity
