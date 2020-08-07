@@ -23,17 +23,32 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  #  国际化
+  flutter_localizations:
+    sdk: flutter
+  #  路由
   fluro: ^1.6.3
+  #  状态管理
   provider: ^4.3.1
+  #  屏幕适配
   flutter_screenutil: ^2.3.1
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
+  #  网络请求
+  dio: ^3.0.9
+  retrofit: any
+  #  刷新
+  flutter_easyrefresh: ^2.1.5
+  #  轮播
+  flutter_swiper: ^1.1.6
+  #  获取图片颜色
+  color_thief_flutter: ^1.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  #  网络请求
+  retrofit_generator: any
+  build_runner: any
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fq_mall/common/constant/string.dart';
-import 'package:flutter_fq_mall/ui/home_view.dart';
+import 'package:flutter_fq_mall/ui/home/home_model.dart';
+import 'package:flutter_screenutil/screenutil.dart';
+import 'file:///D:/fqdemospeace/flutter_fq_mall/lib/ui/home/home_view.dart';
+import 'package:provider/provider.dart';
 
 class MainView extends StatefulWidget {
   @override
@@ -10,18 +13,22 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> {
   int _selectedIndex = 0;
   List<Widget> _list = List()
-    ..add(HomeView())
+    ..add(ChangeNotifierProvider(
+      create: (context) => HomeModel(),
+      child: HomeView(),
+    ))
     ..add(Text("2"))
     ..add(Text("3"))
     ..add(Text("4"));
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     return Scaffold(
-      body: SafeArea(child: IndexedStack(
+      body: IndexedStack(
         index: _selectedIndex,
         children: _list,
-      )),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
