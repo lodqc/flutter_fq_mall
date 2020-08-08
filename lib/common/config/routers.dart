@@ -1,7 +1,9 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_fq_mall/ui/home/home_model.dart';
+import 'package:flutter_fq_mall/ui/home/home_view.dart';
 import 'package:flutter_fq_mall/ui/not_found_view.dart';
-import 'package:flutter_fq_mall/ui/main_view.dart';
+import 'package:provider/provider.dart';
 
 import 'navigator_util.dart';
 
@@ -25,5 +27,8 @@ class Routers {
 
 var splashHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> parameters) {
-  return MainView();
+  return ChangeNotifierProvider(
+    create: (context) => HomeModel(),
+    child: HomeView(),
+  );
 });
