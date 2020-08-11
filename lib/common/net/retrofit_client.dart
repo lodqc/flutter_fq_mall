@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:dio/adapter.dart';
 import 'package:flutter_fq_mall/common/bean/home_bean.dart';
 import 'package:flutter_fq_mall/common/net/api.dart';
 import 'package:retrofit/retrofit.dart';
@@ -35,19 +37,19 @@ abstract class RetrofitClient {
       print("onError == ${e.toString()}");
       return e; //continue
     }));
-    // //抓包代理
-    // bool isProxyChecked = true; // a variable for debug
-    // String proxy = '10.8.0.173:8888'; // ip:port
-    // (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-    //     (client) {
-    //   client.badCertificateCallback =
-    //       (X509Certificate cert, String host, int port) {
-    //     return isProxyChecked && Platform.isAndroid;
-    //   };
-    //   client.findProxy = (url) {
-    //     return isProxyChecked ? 'PROXY $proxy' : 'DIRECT';
-    //   };
-    // };
+     //抓包代理
+     bool isProxyChecked = true; // a variable for debug
+     String proxy = '10.8.0.170:8888'; // ip:port
+     (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+         (client) {
+       client.badCertificateCallback =
+           (X509Certificate cert, String host, int port) {
+         return isProxyChecked && Platform.isAndroid;
+       };
+       client.findProxy = (url) {
+         return isProxyChecked ? 'PROXY $proxy' : 'DIRECT';
+       };
+     };
     return _RetrofitClient(dio, baseUrl: baseUrl);
   }
 

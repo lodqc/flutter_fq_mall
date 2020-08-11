@@ -32,3 +32,4 @@ var splashHandler = Handler(
     child: HomeView(),
   );
 });
+

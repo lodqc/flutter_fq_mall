@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'common/config/navigator_util.dart';
 import 'common/config/routers.dart';
+import 'generated/i18n.dart';
 
 void main() {
   runApp(MallApp());
@@ -21,16 +22,16 @@ class MallApp extends StatelessWidget {
       onGenerateRoute: NavigatorUtils.router.generator,
       theme: ThemeData(
         primaryColor: Colors.white,
+        platform: TargetPlatform.iOS
       ),
       localizationsDelegates: [
+        S.delegate,
         GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate
       ],
-      supportedLocales: [
-        const Locale('zh', 'CN'), // 中文简体
-        //其它Locales
-      ],
+      supportedLocales: S.delegate.supportedLocales,
+      localeResolutionCallback: S.delegate.resolution(),
     );
   }
 }
