@@ -6,6 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_fq_mall/common/bean/home_bean.dart';
 import 'package:flutter_fq_mall/common/constant/string.dart';
+import 'package:flutter_fq_mall/common/weight/ios_classical_header.dart';
 import 'package:flutter_fq_mall/common/weight/sliver_custom_header_delegate.dart';
 import 'package:flutter_fq_mall/generated/i18n.dart';
 import 'package:flutter_fq_mall/ui/home/home_model.dart';
@@ -27,7 +28,6 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   HomeModel model;
-  EasyRefreshController _controller = EasyRefreshController();
 
   @override
   void initState() {
@@ -35,12 +35,6 @@ class _HomeViewState extends State<HomeView> {
     model = context.read<HomeModel>();
     model.homeIndex();
   }
-
-  // Header浮动
-  bool _headerFloat = false;
-
-  // 震动
-  bool _vibration = true;
 
   // 无限加载
   bool _enableInfiniteLoad = true;
@@ -51,45 +45,29 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       body: EasyRefresh.custom(
         enableControlFinishRefresh: false,
-        enableControlFinishLoad: true,
-        controller: _controller,
-        header: ClassicalHeader(
-          enableInfiniteRefresh: false,
-          bgColor: _headerFloat ? Theme.of(context).primaryColor : null,
-          infoColor: _headerFloat ? Colors.black87 : Colors.teal,
-          float: _headerFloat,
-          enableHapticFeedback: _vibration,
-          refreshText: S.of(context).pullToRefresh,
-          refreshReadyText: S.of(context).releaseToRefresh,
-          refreshingText: S.of(context).refreshing,
-          refreshedText: S.of(context).refreshed,
-          refreshFailedText: S.of(context).refreshFailed,
-          noMoreText: S.of(context).noMore,
-          infoText: S.of(context).updateAt,
-        ),
-        footer: ClassicalFooter(
-          enableInfiniteLoad: _enableInfiniteLoad,
-          enableHapticFeedback: _vibration,
-          loadText: S.of(context).pushToLoad,
-          loadReadyText: S.of(context).releaseToLoad,
-          loadingText: S.of(context).loading,
-          loadedText: S.of(context).loaded,
-          loadFailedText: S.of(context).loadFailed,
-          noMoreText: S.of(context).noMore,
-          infoText: S.of(context).updateAt,
-        ),
+//        enableControlFinishLoad: true,
+        controller: model.controller,
+        header: IosClassicalHeader(context: context),
+//        footer: ClassicalFooter(
+//          enableInfiniteLoad: _enableInfiniteLoad,
+//          enableHapticFeedback: _vibration,
+//          loadText: S.of(context).pushToLoad,
+//          loadReadyText: S.of(context).releaseToLoad,
+//          loadingText: S.of(context).loading,
+//          loadedText: S.of(context).loaded,
+//          loadFailedText: S.of(context).loadFailed,
+//          noMoreText: S.of(context).noMore,
+//          infoText: S.of(context).updateAt,
+//        ),
         onRefresh: () async {
-          await Future.delayed(Duration(seconds: 2), () {
-            print('onRefresh');
-            _controller.resetLoadState();
-          });
+          model.homeIndex();
         },
-        onLoad: () async {
-          await Future.delayed(Duration(seconds: 2), () {
-            print('onLoad');
-            _controller.finishLoad(noMore: true);
-          });
-        },
+//        onLoad: () async {
+//          await Future.delayed(Duration(seconds: 2), () {
+//            print('onLoad');
+//            _controller.finishLoad(noMore: true);
+//          });
+//        },
         slivers: <Widget>[
           SliverPersistentHeader(
             pinned: true,
@@ -114,60 +92,59 @@ class _HomeViewState extends State<HomeView> {
 
   Selector<HomeModel, List<HomeCouponList>> _getCouponSelector() {
     return Selector<HomeModel, List<HomeCouponList>>(
-            builder: (context, data, _) => SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) => Container(
-                        child: InkWell(
-                          onTap: () => print("object"),
-                          child: Card(
-                            margin: EdgeInsets.all(20.w),
-                            child: Row(
+        builder: (context, data, _) => SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) => Container(
+                    child: InkWell(
+                  onTap: () => print("object"),
+                  child: Card(
+                    margin: EdgeInsets.all(20.w),
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          alignment: Alignment.center,
+                          width: 200.w,
+                          child: Text(
+                            "${data[index].discount}元",
+                            style:
+                                TextStyle(fontSize: 50.sp, color: Colors.grey),
+                          ),
+                        ),
+                        Divider(
+                          color: Colors.grey,
+                        ),
+                        Expanded(
+                          child: Container(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Container(
-                                  alignment: Alignment.center,
-                                  width: 200.w,
-                                  child: Text(
-                                    "${data[index].discount}元",
-                                    style: TextStyle(
-                                        fontSize: 50.sp, color: Colors.grey),
-                                  ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 20.w),
                                 ),
-                                Divider(
-                                  color: Colors.grey,
+                                Text(data[index].name),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 20.w),
                                 ),
-                                Expanded(
-                                  child: Container(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 20.w),
-                                        ),
-                                        Text(data[index].name),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 20.w),
-                                        ),
-                                        Text("满${data[index].min}使用"),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 20.w),
-                                        ),
-                                        Text("有效期${data[index].days}天"),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 20.w),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
+                                Text("满${data[index].min}使用"),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 20.w),
+                                ),
+                                Text("有效期${data[index].days}天"),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 20.w),
+                                ),
                               ],
                             ),
                           ),
-                        )),
-                    childCount: data == null ? 0 : data.length,
+                        )
+                      ],
+                    ),
                   ),
-                ),
-            selector: (context, model) => model.data.couponList);
+                )),
+                childCount: data == null ? 0 : data.length,
+              ),
+            ),
+        selector: (context, model) => model.data.couponList);
   }
 
   Selector<HomeModel, int> _getBannerSelector() {
