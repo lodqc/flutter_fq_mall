@@ -11,7 +11,7 @@ part 'retrofit_client.g.dart';
 abstract class RetrofitClient {
   factory RetrofitClient({String baseUrl}) {
     Dio dio = new Dio();
-    dio.options.connectTimeout = 10000;
+    dio.options.connectTimeout = 20000;
     dio.options.receiveTimeout = 5000;
     dio.options.sendTimeout = 5000;
     dio.options.responseType = ResponseType.json;
