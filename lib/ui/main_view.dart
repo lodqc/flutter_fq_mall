@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fq_mall/constant/string.dart';
+import 'package:flutter_fq_mall/model/home_model.dart';
+import 'package:flutter_fq_mall/ui/classify_view.dart';
+import 'package:provider/provider.dart';
 
 import 'home_view.dart';
 
@@ -11,8 +14,11 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> {
   int _selectedIndex = 0;
   List<Widget> _list = List()
-    ..add(HomeView())
-    ..add(Text("2"))
+    ..add(ChangeNotifierProvider(
+      create: (context) => HomeModel(),
+      child: HomeView(),
+    ))
+    ..add(ClassifyView())
     ..add(Text("3"))
     ..add(Text("4"));
 
