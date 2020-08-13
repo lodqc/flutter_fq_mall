@@ -1,7 +1,8 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fq_mall/ui/home/home_model.dart';
-import 'package:flutter_fq_mall/ui/home/home_view.dart';
+import 'package:flutter_fq_mall/ui/classify_view.dart';
+import 'file:///D:/fqdemospeace/flutter_fq_mall/lib/model/home_model.dart';
+import 'file:///D:/fqdemospeace/flutter_fq_mall/lib/ui/home_view.dart';
 import 'package:flutter_fq_mall/ui/not_found_view.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +30,7 @@ var splashHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> parameters) {
   return ChangeNotifierProvider(
     create: (context) => HomeModel(),
-    child: HomeView(),
+    child: ClassifyView(),
   );
 });
 

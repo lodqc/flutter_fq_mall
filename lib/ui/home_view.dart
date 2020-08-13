@@ -4,14 +4,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_fq_mall/common/bean/home_bean.dart';
-import 'package:flutter_fq_mall/common/constant/string.dart';
-import 'package:flutter_fq_mall/common/weight/ios_classical_header.dart';
-import 'package:flutter_fq_mall/common/weight/sliver_custom_header_delegate.dart';
-import 'package:flutter_fq_mall/ui/home/home_model.dart';
+import 'package:flutter_fq_mall/bean/home_bean.dart';
+import 'package:flutter_fq_mall/constant/string.dart';
+import 'package:flutter_fq_mall/model/home_model.dart';
+import 'package:flutter_fq_mall/weight/ios_classical_header.dart';
+import 'package:flutter_fq_mall/weight/sliver_custom_header_delegate.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /**
  *Author: fuqiang

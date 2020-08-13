@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fq_mall/common/constant/string.dart';
-import 'package:flutter_screenutil/screenutil.dart';
-import 'file:///D:/fqdemospeace/flutter_fq_mall/lib/ui/home/home_view.dart';
+import 'package:flutter_fq_mall/constant/string.dart';
+
+import 'home_view.dart';
 
 class MainView extends StatefulWidget {
   @override

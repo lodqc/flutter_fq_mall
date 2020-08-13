@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_fq_mall/common/bean/home_bean.dart';
-import 'package:flutter_fq_mall/common/net/retrofit_client.dart';
 import 'package:color_thief_flutter/color_thief_flutter.dart';
+import 'package:flutter_fq_mall/bean/home_bean.dart';
+import 'package:flutter_fq_mall/net/retrofit_client.dart';
 
 class HomeModel extends ChangeNotifier {
   HomeData data = HomeData();

@@ -2,10 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dio/adapter.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
-import 'package:flutter_fq_mall/common/bean/home_bean.dart';
-import 'package:flutter_fq_mall/common/net/api.dart';
+import 'package:flutter_fq_mall/bean/home_bean.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
+
+import 'api.dart';
 part 'retrofit_client.g.dart';
 //flutter pub run build_runner build
 @RestApi(baseUrl: Api.BASE_URL)

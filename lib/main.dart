@@ -1,9 +1,8 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_screenutil/screenutil.dart';
-import 'common/config/navigator_util.dart';
-import 'common/config/routers.dart';
+import 'config/navigator_util.dart';
+import 'config/routers.dart';
 import 'generated/i18n.dart';
 
 void main() {
