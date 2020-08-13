@@ -194,7 +194,14 @@
         <entry key="dio">
           <value>
             <list>
-              <option value="D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/dio-3.0.9/lib" />
+              <option value="D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/dio-3.0.10/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="dio_http_cache">
+          <value>
+            <list>
+              <option value="D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/dio_http_cache-0.2.8/lib" />
             </list>
           </value>
         </entry>
@@ -349,6 +356,13 @@
           <value>
             <list>
               <option value="D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/json_annotation-3.0.1/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="json_serializable">
+          <value>
+            <list>
+              <option value="D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/json_serializable-3.4.0/lib" />
             </list>
           </value>
         </entry>
@@ -732,7 +746,8 @@
       <root url="file://D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/csslib-0.16.2/lib" />
       <root url="file://D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/cupertino_icons-0.1.3/lib" />
       <root url="file://D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/dart_style-1.3.6/lib" />
-      <root url="file://D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/dio-3.0.9/lib" />
+      <root url="file://D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/dio-3.0.10/lib" />
+      <root url="file://D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/dio_http_cache-0.2.8/lib" />
       <root url="file://D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/fake_async-1.1.0/lib" />
       <root url="file://D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/file-5.2.1/lib" />
       <root url="file://D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/fixnum-0.10.11/lib" />
@@ -752,6 +767,7 @@
       <root url="file://D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/io-0.3.4/lib" />
       <root url="file://D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/js-0.6.2/lib" />
       <root url="file://D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/json_annotation-3.0.1/lib" />
+      <root url="file://D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/json_serializable-3.4.0/lib" />
       <root url="file://D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/logging-0.11.4/lib" />
       <root url="file://D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/matcher-0.12.8/lib" />
       <root url="file://D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/meta-1.1.8/lib" />

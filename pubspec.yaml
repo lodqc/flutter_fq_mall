@@ -34,7 +34,8 @@ dependencies:
   flutter_screenutil: ^2.3.1
   cupertino_icons: ^0.1.3
   #  网络请求
-  dio: ^3.0.9
+  dio: ^3.0.10
+  dio_http_cache: ^0.2.8
   retrofit: any
   #  刷新
   flutter_easyrefresh: ^2.1.5
