@@ -2,8 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_fq_mall/bean/category_bean.dart';
+import 'package:flutter_fq_mall/model/classify_model.dart';
 import 'package:flutter_fq_mall/weight/ios_classical_header.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 /**
  *Author: fuqiang
@@ -18,6 +21,13 @@ class ClassifyView extends StatefulWidget {
 }
 
 class _ClassifyViewState extends State<ClassifyView> {
+  var model;
+  @override
+  void initState() {
+    super.initState();
+    model = context.read<ClassifyModel>();
+    model.getFirstCategory();
+  }
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
@@ -28,23 +38,33 @@ class _ClassifyViewState extends State<ClassifyView> {
           children: [
             Expanded(
               flex: 1,
-              child: ListView.builder(
-                itemBuilder: (context, index) => Container(
-                  height: 192.h,
-                  child: Center(
-                    child: Text(
-                      "data",
-                      style:
-                          TextStyle(fontSize: 40.sp, color: Color(0xff666666)),
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom:
-                              BorderSide(width: 1.h, color: Colors.orange))),
-                ),
-                itemCount: 20,
-              ),
+              child: Selector<ClassifyModel, CategoryBean>(
+                  builder: (context, bean, _) => ListView.builder(
+                        itemBuilder: (context, index) => InkWell(
+                          child: Container(
+                            height: 192.h,
+                            child: Center(
+                              child: Text(
+                                bean.data[index].name,
+                                style: TextStyle(
+                                    fontSize: 40.sp, color: Color(0xff666666)),
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        width: 1.h,
+                                        color: bean.index == index
+                                            ? Colors.orange
+                                            : Colors.white))),
+                          ),
+                          onTap: () => {
+                            model.selectClassiffy(index)
+                          },
+                        ),
+                        itemCount: bean == null ? 0 : bean.data.length,
+                      ),
+                  selector: (context, model) => model.categoryBean),
             ),
             Expanded(
               flex: 4,

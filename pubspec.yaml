@@ -37,6 +37,8 @@ dependencies:
   dio: ^3.0.10
   dio_http_cache: ^0.2.8
   retrofit: any
+  logger: any  #for logging purpose
+
   #  刷新
   flutter_easyrefresh: ^2.1.5
   #  轮播

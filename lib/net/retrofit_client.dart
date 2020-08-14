@@ -1,13 +1,12 @@
 import 'dart:convert';
-import 'dart:io';
-import 'package:dio/adapter.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
+import 'package:flutter_fq_mall/bean/category_bean.dart';
 import 'package:flutter_fq_mall/bean/home_bean.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
-
 import 'api.dart';
 part 'retrofit_client.g.dart';
+
 //flutter pub run build_runner build
 @RestApi(baseUrl: Api.BASE_URL)
 abstract class RetrofitClient {
@@ -29,8 +28,7 @@ abstract class RetrofitClient {
 //      });
 //
 //      options.data = jsonEncode(options.queryParameters);
-      options = buildCacheOptions(Duration(days: 7),
-          options: options);
+      options = buildCacheOptions(Duration(days: 7), options: options);
       print("onRequest == ${jsonEncode(options.data)}");
       return options; //continue
     }, onResponse: (Response response) {
@@ -41,7 +39,8 @@ abstract class RetrofitClient {
       print("onError == ${e.toString()}");
       return e; //continue
     }));
-    dio.interceptors.add(DioCacheManager(CacheConfig(baseUrl: Api.BASE_URL)).interceptor);
+    dio.interceptors
+        .add(DioCacheManager(CacheConfig(baseUrl: Api.BASE_URL)).interceptor);
 //     //抓包代理
 //     bool isProxyChecked = true; // a variable for debug
 //     String proxy = '10.8.0.170:8888'; // ip:port
@@ -60,4 +59,10 @@ abstract class RetrofitClient {
 
   @GET(Api.HOME_URL)
   Future<HomeBean> homeIndex();
+
+  @GET(Api.HOME_FIRST_CATEGORY)
+  Future<CategoryBean> getFirstCategory();
+
+  @GET("${Api.HOME_SECOND_CATEGORY}?id={id}")
+  Future<CategoryBean> getSecondCategory(@Path("id") int id);
 }

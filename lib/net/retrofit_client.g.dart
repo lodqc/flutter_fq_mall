@@ -33,4 +33,41 @@ class _RetrofitClient implements RetrofitClient {
     final value = HomeBean.fromJson(_result.data);
     return value;
   }
+
+  @override
+  getFirstCategory() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/catalog/getfirstcategory',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = CategoryBean.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  getSecondCategory(id) async {
+    ArgumentError.checkNotNull(id, 'id');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/catalog/getsecondcategory?id=$id',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = CategoryBean.fromJson(_result.data);
+    return value;
+  }
 }
