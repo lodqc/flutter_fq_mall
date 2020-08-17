@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_fq_mall/bean/home_bean.dart';
+import 'package:flutter_fq_mall/config/navigator_util.dart';
 import 'package:flutter_fq_mall/constant/string.dart';
 import 'package:flutter_fq_mall/model/home_model.dart';
 import 'package:flutter_fq_mall/weight/ios_classical_header.dart';

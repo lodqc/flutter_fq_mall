@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_fq_mall/bean/category_bean.dart';
+import 'package:flutter_fq_mall/config/navigator_util.dart';
 import 'package:flutter_fq_mall/model/classify_model.dart';
 import 'package:flutter_fq_mall/weight/ios_classical_header.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,7 +35,6 @@ class _ClassifyViewState extends State<ClassifyView> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context);
     return Scaffold(
       body: Container(
         color: Colors.white,
@@ -108,28 +110,34 @@ class _ClassifyViewState extends State<ClassifyView> {
                                             crossAxisCount: 3,
                                             childAspectRatio: 0.9),
                                     itemBuilder: (context, index) => Card(
-                                      child: Padding(
-                                        padding: EdgeInsets.only(top: 40.h),
-                                        child: Column(
-                                          children: [
-                                            CachedNetworkImage(
-                                                height: 150.h,
-                                                width: double.infinity,
-                                                fit: BoxFit.cover,
-                                                imageUrl:
-                                                    data.data[index].picUrl),
-                                            Padding(
-                                                padding:
-                                                    EdgeInsets.only(top: 20.h)),
-                                            Text(
-                                              data.data[index].name,
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  fontSize: 30.sp,
-                                                  color: Color(0xff666666)),
-                                            ),
-                                          ],
+                                      child: InkWell(
+                                        child: Padding(
+                                          padding: EdgeInsets.only(top: 40.h),
+                                          child: Column(
+                                            children: [
+                                              CachedNetworkImage(
+                                                  height: 150.h,
+                                                  width: double.infinity,
+                                                  fit: BoxFit.cover,
+                                                  imageUrl:
+                                                      data.data[index].picUrl),
+                                              Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 20.h)),
+                                              Text(
+                                                data.data[index].name,
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 30.sp,
+                                                    color: Color(0xff666666)),
+                                              ),
+                                            ],
+                                          ),
                                         ),
+                                        onTap: () =>
+                                            NavigatorUtils.goGoodsListPage(
+                                                context,
+                                                data.data[index].id.toString(),json.encode(data.data)),
                                       ),
                                     ),
                                     itemCount:

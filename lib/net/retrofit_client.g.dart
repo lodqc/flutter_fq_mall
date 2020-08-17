@@ -70,4 +70,24 @@ class _RetrofitClient implements RetrofitClient {
     final value = CategoryBean.fromJson(_result.data);
     return value;
   }
+
+  @override
+  goodsList(categoryId, {page = 1, limit = 10}) async {
+    ArgumentError.checkNotNull(categoryId, 'categoryId');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/goods/list?categoryId=$categoryId&page=$page&limit=$limit',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = GoodsListBean.fromJson(_result.data);
+    return value;
+  }
 }

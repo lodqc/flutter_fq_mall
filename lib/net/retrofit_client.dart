@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:flutter_fq_mall/bean/category_bean.dart';
+import 'package:flutter_fq_mall/bean/goods_list_bean.dart';
 import 'package:flutter_fq_mall/bean/home_bean.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 import 'api.dart';
+
 part 'retrofit_client.g.dart';
 
 //flutter pub run build_runner build
@@ -65,4 +67,9 @@ abstract class RetrofitClient {
 
   @GET("${Api.HOME_SECOND_CATEGORY}?id={id}")
   Future<CategoryBean> getSecondCategory(@Path("id") int id);
+
+  @GET(
+      "${Api.GOODS_LIST_URL}?categoryId={categoryId}&page={page}&limit={limit}")
+  Future<GoodsListBean> goodsList(@Path("categoryId") String categoryId,
+      {@Path("page") int page = 1, @Path("limit") int limit = 10});
 }
