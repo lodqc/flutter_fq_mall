@@ -22,12 +22,14 @@ class ClassifyView extends StatefulWidget {
 
 class _ClassifyViewState extends State<ClassifyView> {
   var model;
+
   @override
   void initState() {
     super.initState();
     model = context.read<ClassifyModel>();
     model.getFirstCategory();
   }
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
@@ -58,9 +60,7 @@ class _ClassifyViewState extends State<ClassifyView> {
                                             ? Colors.orange
                                             : Colors.white))),
                           ),
-                          onTap: () => {
-                            model.selectClassiffy(index)
-                          },
+                          onTap: () => model.selectClassiffy(index),
                         ),
                         itemCount: bean == null ? 0 : bean.data.length,
                       ),
@@ -75,7 +75,7 @@ class _ClassifyViewState extends State<ClassifyView> {
                     enableControlFinishRefresh: false,
                     controller: EasyRefreshController(),
                     header: IosClassicalHeader(context: context),
-                    onRefresh: () {},
+                    onRefresh: () => model.getSecondCategory(),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
@@ -85,47 +85,58 @@ class _ClassifyViewState extends State<ClassifyView> {
                                 height: 300.h,
                                 width: double.infinity,
                                 fit: BoxFit.cover,
-                                imageUrl:
-                                    "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg"),
+                                imageUrl: context.select<ClassifyModel, String>(
+                                    (value) => value.currentBean == null
+                                        ? ""
+                                        : value.currentBean.picUrl)),
                           ),
                           Text(
-                            "data",
+                            context.select<ClassifyModel, String>((value) =>
+                                value.currentBean == null
+                                    ? ""
+                                    : value.currentBean.name),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 40.sp, color: Color(0xff666666)),
                           ),
-                          GridView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3, childAspectRatio: 0.9),
-                            itemBuilder: (context, index) => Card(
-                              child: Padding(
-                                padding: EdgeInsets.only(top: 40.h),
-                                child: Column(
-                                  children: [
-                                    CachedNetworkImage(
-                                        height: 150.h,
-                                        width: double.infinity,
-                                        fit: BoxFit.cover,
-                                        imageUrl:
-                                            "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg"),
-                                    Padding(
-                                        padding: EdgeInsets.only(top: 20.h)),
-                                    Text(
-                                      "data",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: 30.sp,
-                                          color: Color(0xff666666)),
+                          Selector<ClassifyModel, CategoryBean>(
+                              builder: (context, data, _) => GridView.builder(
+                                    shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 3,
+                                            childAspectRatio: 0.9),
+                                    itemBuilder: (context, index) => Card(
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: 40.h),
+                                        child: Column(
+                                          children: [
+                                            CachedNetworkImage(
+                                                height: 150.h,
+                                                width: double.infinity,
+                                                fit: BoxFit.cover,
+                                                imageUrl:
+                                                    data.data[index].picUrl),
+                                            Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 20.h)),
+                                            Text(
+                                              data.data[index].name,
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontSize: 30.sp,
+                                                  color: Color(0xff666666)),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            itemCount: 27,
-                          ),
+                                    itemCount:
+                                        data == null ? 0 : data.data.length,
+                                  ),
+                              selector: (context, model) =>
+                                  model.secondCategory),
                         ],
                       ),
                     ),

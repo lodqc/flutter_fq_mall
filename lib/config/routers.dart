@@ -1,9 +1,7 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fq_mall/model/classify_model.dart';
-import 'package:flutter_fq_mall/ui/classify_view.dart';
+import 'package:flutter_fq_mall/ui/main_view.dart';
 import 'package:flutter_fq_mall/ui/not_found_view.dart';
-import 'package:provider/provider.dart';
 
 import 'navigator_util.dart';
 
@@ -27,9 +25,5 @@ class Routers {
 
 var splashHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> parameters) {
-  return ChangeNotifierProvider(
-    create: (context) => ClassifyModel(),
-
-    child: ClassifyView(),
-  );
+  return MainView();
 });

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fq_mall/constant/string.dart';
+import 'package:flutter_fq_mall/model/classify_model.dart';
 import 'package:flutter_fq_mall/model/home_model.dart';
 import 'package:flutter_fq_mall/ui/classify_view.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,10 @@ class _MainViewState extends State<MainView> {
       create: (context) => HomeModel(),
       child: HomeView(),
     ))
-    ..add(ClassifyView())
+    ..add(ChangeNotifierProvider(
+      create: (context) => ClassifyModel(),
+      child: ClassifyView(),
+    ))
     ..add(Text("3"))
     ..add(Text("4"));
 

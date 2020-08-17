@@ -5,15 +5,17 @@ import 'package:flutter_fq_mall/net/retrofit_client.dart';
 class ClassifyModel extends ChangeNotifier {
   CategoryBean categoryBean;
   CategoryBean secondCategory;
+  CategoryData currentBean;
 
   getFirstCategory() {
     RetrofitClient().getFirstCategory().then((value) {
       categoryBean = value;
-      notifyListeners();
+      currentBean = categoryBean.data[0];
+      getSecondCategory();
     });
   }
-  getSecondCategory(int id,{Function callBack}) {
-    RetrofitClient().getSecondCategory(id).then((value) {
+  getSecondCategory({Function callBack}) {
+    RetrofitClient().getSecondCategory(currentBean.id).then((value) {
       secondCategory = value;
       if(callBack!=null){
         callBack.call();
@@ -23,7 +25,8 @@ class ClassifyModel extends ChangeNotifier {
   }
 
   selectClassiffy(int index) {
-    getSecondCategory(categoryBean.data[index].id,callBack: (){
+    currentBean = categoryBean.data[index];
+    getSecondCategory(callBack: (){
       categoryBean = CategoryBean()
         ..data = categoryBean.data
         ..index = index;
