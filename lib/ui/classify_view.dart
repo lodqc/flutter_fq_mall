@@ -109,35 +109,39 @@ class _ClassifyViewState extends State<ClassifyView> {
                                         SliverGridDelegateWithFixedCrossAxisCount(
                                             crossAxisCount: 3,
                                             childAspectRatio: 0.9),
-                                    itemBuilder: (context, index) => Card(
-                                      child: InkWell(
-                                        child: Padding(
-                                          padding: EdgeInsets.only(top: 40.h),
-                                          child: Column(
-                                            children: [
-                                              CachedNetworkImage(
-                                                  height: 150.h,
-                                                  width: double.infinity,
-                                                  fit: BoxFit.cover,
-                                                  imageUrl:
-                                                      data.data[index].picUrl),
-                                              Padding(
-                                                  padding: EdgeInsets.only(
-                                                      top: 20.h)),
-                                              Text(
-                                                data.data[index].name,
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontSize: 30.sp,
-                                                    color: Color(0xff666666)),
-                                              ),
-                                            ],
+                                    itemBuilder: (context, index) =>
+                                        ChangeNotifierProvider<ClassifyModel>(
+                                      create: (context) => model,
+                                      child: Card(
+                                        child: InkWell(
+                                          child: Padding(
+                                            padding: EdgeInsets.only(top: 40.h),
+                                            child: Column(
+                                              children: [
+                                                CachedNetworkImage(
+                                                    height: 150.h,
+                                                    width: double.infinity,
+                                                    fit: BoxFit.cover,
+                                                    imageUrl: data
+                                                        .data[index].picUrl),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        top: 20.h)),
+                                                Text(
+                                                  data.data[index].name,
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontSize: 30.sp,
+                                                      color: Color(0xff666666)),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        onTap: () =>
+                                          onTap: () {
                                             NavigatorUtils.goGoodsListPage(
-                                                context,
-                                                data.data[index].id.toString(),json.encode(data.data)),
+                                                context,index);
+                                          },
+                                        ),
                                       ),
                                     ),
                                     itemCount:

@@ -1,11 +1,11 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_fq_mall/model/classify_model.dart';
 import 'package:flutter_fq_mall/model/goods_list_model.dart';
 import 'package:flutter_fq_mall/ui/goods_list_view.dart';
 import 'package:flutter_fq_mall/ui/main_view.dart';
 import 'package:flutter_fq_mall/ui/not_found_view.dart';
 import 'package:provider/provider.dart';
-
 import 'navigator_util.dart';
 
 class Routers {
@@ -33,8 +33,10 @@ var mainHandler = Handler(
 
 var goodsListHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> parameters) {
-  return ChangeNotifierProvider<GoodsListModel>(
-    create: (context) => GoodsListModel(),
-    child: GoodsListView(parameters["categoryId"].first,parameters["data"].first),
-  );
-});
+      var read = NavigatorUtils.buildContext.read<ClassifyModel>();
+      var data = read.secondCategory.data[int.parse(parameters["index"].first)];
+      return ChangeNotifierProvider<GoodsListModel>(
+        create: (context) => GoodsListModel(),
+        child: GoodsListView(data.id.toString(),read.secondCategory.data),
+      );
+    });

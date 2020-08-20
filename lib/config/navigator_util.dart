@@ -8,13 +8,15 @@ import 'routers.dart';
 
 class NavigatorUtils {
   static Router router;
+  static BuildContext buildContext;
 
   static goGoodsListPage(
-      BuildContext context,String categoryId, String data) {
+      BuildContext context,int index) {
+    buildContext = context;
     router.navigateTo(
         context,
         Routers.goodsList +
-            "?categoryId=$categoryId&data=$data",
+            "?index=$index",
         transition: TransitionType.inFromRight);
   }
 }

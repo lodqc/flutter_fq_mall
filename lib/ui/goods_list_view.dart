@@ -14,8 +14,8 @@ import 'package:provider/provider.dart';
  *Description:
  */
 class GoodsListView extends StatefulWidget {
-  var categoryId;
-  var tabData;
+  String categoryId;
+  List<CategoryData> tabData;
 
   GoodsListView(this.categoryId, this.tabData, {Key key}) : super(key: key);
 
@@ -27,14 +27,12 @@ class _GoodsListViewState extends State<GoodsListView>
     with SingleTickerProviderStateMixin {
   GoodsListModel model;
   TabController _tabController; //需要定义一个Controller
-  List<CategoryData> tabData;
 
   @override
   void initState() {
     super.initState();
-    tabData = json.decode(widget.tabData);
     // 创建Controller
-    _tabController = TabController(length: tabData.length, vsync: this);
+    _tabController = TabController(length: widget.tabData.length, vsync: this);
     model = context.read<GoodsListModel>();
     model.goodsList(widget.categoryId);
   }
@@ -63,11 +61,11 @@ class _GoodsListViewState extends State<GoodsListView>
             //生成Tab菜单
             controller: _tabController,
             isScrollable: true,
-            onTap: (index) => model.goodsList(tabData[index].id.toString()),
-            tabs: tabData.map((e) => Tab(text: e.name)).toList()),
+            onTap: (index) => model.goodsList(widget.tabData[index].id.toString()),
+            tabs: widget.tabData.map((e) => Tab(text: e.name)).toList()),
       ),
       body: TabBarView(
-        children: tabData
+        children: widget.tabData
             .map((e) => Selector<GoodsListModel, List<GoodsListItem>>(
                 builder: (context, data, _) => GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
